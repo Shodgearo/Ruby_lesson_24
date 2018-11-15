@@ -37,19 +37,16 @@ post '/visit' do
   @var = params[:variable]
   @color = params[:color]
 
-  if @name == ""
-    @error = "Enter name"
-  end
+  #Для каждой пары ключ-значение
+  hash = { :username => 'Enter name',
+           :phone => 'Enter number phone',
+           :time => 'Enter time'}
 
-  if @phone == ""
-    @error = "Enter number phone"
-  end
+  hash.each do |key, value|
+    if params[key] == ''
+      @error = hash[key]
+    end
 
-  if @time == ""
-    @error = "Enter time"
-  end
-
-  if @error != ""
     return erb :visit
   end
 
