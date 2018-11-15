@@ -37,6 +37,11 @@ post '/visit' do
   @var = params[:variable]
   @color = params[:color]
 
+  if @name == ""
+    @error = "Enter name"
+    return erb :visit
+  end
+
   f = File.open './public/users.txt', 'a'
   f.write "#{@name}, #{@phone}, #{@time}, #{@var}, #{@color}\n"
   f.close
