@@ -44,10 +44,10 @@ post '/visit' do
 
   hash.each do |key, value|
     if params[key] == ''
-      @error = hash[key]
-    end
+      @error = value
 
-    return erb :visit
+      return erb :visit
+    end
   end
 
   f = File.open './public/users.txt', 'a'
